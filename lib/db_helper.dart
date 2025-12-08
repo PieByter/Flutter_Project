@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 
 class DBHelper {
-  static Box getBox() => Hive.box('users');
+  static Box getBox() => Hive.box('userBox');
 
   static Future<void> register(
     String username,
