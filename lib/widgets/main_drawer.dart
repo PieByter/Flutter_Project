@@ -52,7 +52,7 @@ class MainDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
                     leading: const Icon(Icons.login),
-                    title: const Text('Isi Menu 1'),
+                    title: const Text('Halaman Utama'),
                     onTap: () {
                       onMenuTap(0);
                       Navigator.pop(context);
@@ -63,7 +63,7 @@ class MainDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
                     leading: const Icon(Icons.app_registration),
-                    title: const Text('Isi Menu 2'),
+                    title: const Text('Halaman Pemesanan'),
                     onTap: () {
                       onMenuTap(1);
                       Navigator.pop(context);
@@ -82,9 +82,20 @@ class MainDrawer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
                     leading: const Icon(Icons.fastfood),
-                    title: const Text('Isi Menu 3'),
+                    title: const Text('Riwayat Transaksi'),
                     onTap: () {
                       onMenuTap(2);
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 32),
+                  child: ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text('Profil'),
+                    onTap: () {
+                      onMenuTap(3);
                       Navigator.pop(context);
                     },
                   ),

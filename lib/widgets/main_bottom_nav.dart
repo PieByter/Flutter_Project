@@ -15,22 +15,17 @@ class MainBottomNav extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: selectedIndex,
       onTap: onTap,
+      selectedItemColor: Theme.of(context).colorScheme.primary,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.fastfood), label: 'Order'),
         BottomNavigationBarItem(
-          icon: Icon(Icons.login),
-          label: 'Login',
-          backgroundColor: Colors.green,
+          icon: Icon(Icons.receipt_long),
+          label: 'Transaction',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.app_registration),
-          label: 'Register',
-          backgroundColor: Colors.red,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.fastfood),
-          label: 'FoodList',
-          backgroundColor: Colors.orange,
-        ),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
     );
   }

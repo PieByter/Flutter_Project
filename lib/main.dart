@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'screens/authentication/login_page.dart';
 import 'screens/authentication/register_page.dart';
-import 'screens/food_list_page.dart';
+import 'screens/main/order/order_page.dart';
+import 'screens/main/home_page.dart';
+import 'screens/main/transaction/transaction_page.dart';
+import 'screens/main/profile/profile_page.dart';
 import 'widgets/main_drawer.dart';
 import 'widgets/main_bottom_nav.dart';
 import 'screens/splash_screen.dart';
+import 'screens/main/order/order_checkout_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +26,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
       home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
+      // home: const SplashScreenPage(),
     );
   }
 }
@@ -35,7 +41,14 @@ class MainNavigationPage extends StatefulWidget {
 
 class _MainNavigationPageState extends State<MainNavigationPage> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [LoginPage(), RegisterPage(), FoodListPage()];
+  final List<Widget> _pages = [
+    HomePage(),
+    OrderPage(),
+    TransactionPage(),
+    ProfilePage(),
+  ];
+
+  final int cartCount = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -46,101 +59,37 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Kantin Apps')),
+      appBar: AppBar(
+        title: const Text('Kantin Apps'),
+        actions: [
+          IconButton(
+            icon: Badge(
+              label: Text('$cartCount'),
+              child: const Icon(Icons.shopping_cart),
+            ),
+            onPressed: () {
+              // Navigator.pushNamed(context, '/order_checkout');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => OrderCheckoutPage()),
+              );
+            },
+            tooltip: 'Keranjang Belanja',
+          ),
+        ],
+      ),
       drawer: MainDrawer(
         onMenuTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
         },
-        // child: ListView(
-        //   padding: EdgeInsets.zero,
-        //   children: [
-        //     DrawerHeader(
-        //       decoration: BoxDecoration(
-        //         image: DecorationImage(
-        //           image: NetworkImage(
-        //             'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-        //           ),
-        //           fit: BoxFit.cover,
-        //         ),
-        //       ),
-        //       child: Column(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           CircleAvatar(
-        //             radius: 32,
-        //             backgroundImage: NetworkImage(
-        //               'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-        //             ),
-        //           ),
-        //           const SizedBox(height: 12),
-        //           const Text(
-        //             'Menu Kantin',
-        //             style: TextStyle(color: Colors.white, fontSize: 24),
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //     ListTile(
-        //       leading: const Icon(Icons.login),
-        //       title: const Text('Login'),
-        //       onTap: () {
-        //         setState(() {
-        //           _selectedIndex = 0;
-        //           Navigator.pop(context);
-        //         });
-        //       },
-        //     ),
-        //     ListTile(
-        //       leading: const Icon(Icons.app_registration),
-        //       title: const Text('Register'),
-        //       onTap: () {
-        //         setState(() {
-        //           _selectedIndex = 1;
-        //           Navigator.pop(context);
-        //         });
-        //       },
-        //     ),
-        //     ListTile(
-        //       leading: const Icon(Icons.fastfood),
-        //       title: const Text('FoodList'),
-        //       onTap: () {
-        //         setState(() {
-        //           _selectedIndex = 2;
-        //           Navigator.pop(context);
-        //         });
-        //       },
-        //     ),
-        //   ],
-        // ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: MainBottomNav(
         selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: _selectedIndex,
-      //   onTap: _onItemTapped,
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.login),
-      //       label: 'Login',
-      //       backgroundColor: Colors.green,
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.app_registration),
-      //       label: 'Register',
-      //       backgroundColor: Colors.red,
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.fastfood),
-      //       label: 'FoodList',
-      //       backgroundColor: Colors.orange,
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
