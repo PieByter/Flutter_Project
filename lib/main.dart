@@ -22,12 +22,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kantin Apps',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-      ),
-      home: const LoginPage(),
+      home: const LoginPage(), // home: const SplashScreenPage(),
       debugShowCheckedModeBanner: false,
-      // home: const SplashScreenPage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.light,
+        ),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: ThemeMode.system,
     );
   }
 }
@@ -60,7 +70,10 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kantin Apps'),
+        // title: const Text('Kantin Apps'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: null,
         actions: [
           IconButton(
             icon: Badge(

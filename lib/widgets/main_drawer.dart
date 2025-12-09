@@ -51,7 +51,7 @@ class MainDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
-                    leading: const Icon(Icons.login),
+                    leading: const Icon(Icons.home),
                     title: const Text('Halaman Utama'),
                     onTap: () {
                       onMenuTap(0);
@@ -62,7 +62,7 @@ class MainDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
-                    leading: const Icon(Icons.app_registration),
+                    leading: const Icon(Icons.fastfood),
                     title: const Text('Halaman Pemesanan'),
                     onTap: () {
                       onMenuTap(1);
@@ -81,7 +81,7 @@ class MainDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 32),
                   child: ListTile(
-                    leading: const Icon(Icons.fastfood),
+                    leading: const Icon(Icons.receipt_long),
                     title: const Text('Riwayat Transaksi'),
                     onTap: () {
                       onMenuTap(2);
