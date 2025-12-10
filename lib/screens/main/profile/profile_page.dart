@@ -53,16 +53,19 @@ class ProfilePage extends StatelessWidget {
                     ListTile(
                       leading: const Icon(Icons.edit),
                       title: const Text('Edit Profil'),
+                      trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
                     ListTile(
                       leading: const Icon(Icons.business),
                       title: const Text('Company Profile'),
+                      trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
                     ListTile(
                       leading: const Icon(Icons.history),
                       title: const Text('History Transaksi'),
+                      trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
                     ListTile(
@@ -71,6 +74,7 @@ class ProfilePage extends StatelessWidget {
                         'Logout',
                         style: TextStyle(color: Colors.red),
                       ),
+                      trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
                   ],
