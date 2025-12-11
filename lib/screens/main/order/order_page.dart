@@ -128,7 +128,10 @@ class _OrderPageState extends State<OrderPage> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       isThreeLine: true,
-                      trailing: const Icon(Icons.chevron_right),
+                      trailing: const SizedBox(
+                        height: double.infinity,
+                        child: Icon(Icons.chevron_right),
+                      ),
                     ),
                   ),
                 );

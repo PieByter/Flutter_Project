@@ -57,14 +57,20 @@ class ProfilePage extends StatelessWidget {
                       onTap: () {},
                     ),
                     ListTile(
-                      leading: const Icon(Icons.business),
-                      title: const Text('Company Profile'),
+                      leading: const Icon(Icons.favorite),
+                      title: const Text('Wishlist'),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
                     ListTile(
                       leading: const Icon(Icons.history),
                       title: const Text('History Transaksi'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.business),
+                      title: const Text('Company Profile'),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () {},
                     ),
@@ -84,7 +90,7 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 64),
               child: Text(
-                '${DateTime.now().year} © Copyright. All right Reserved',
+                '${DateTime.now().year} © Copyright. All right Reserved\nPT Nama Perusahaan',
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.grey),
               ),

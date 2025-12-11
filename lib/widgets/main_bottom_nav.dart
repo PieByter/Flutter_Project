@@ -22,6 +22,10 @@ class MainBottomNav extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.fastfood), label: 'Order'),
         BottomNavigationBarItem(
+          icon: Icon(Icons.card_giftcard),
+          label: 'Coupon',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.receipt_long),
           label: 'Transaction',
         ),

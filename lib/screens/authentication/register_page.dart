@@ -14,6 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
+  bool _obscurePassword = true;
+  bool _obscureConfirm = true;
 
   void _register() async {
     // if (_passwordController.text != _confirmController.text) {
@@ -77,22 +79,52 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 16),
                   TextField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
+                    obscureText: _obscurePassword,
+                    decoration: InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                        tooltip: _obscurePassword
+                            ? 'Lihat Password'
+                            : "Sembunyikan Password",
+                      ),
                     ),
-                    obscureText: true,
                   ),
                   const SizedBox(height: 16),
                   TextField(
                     controller: _confirmController,
-                    decoration: const InputDecoration(
-                      labelText: 'Konfirmasi Password',
+                    obscureText: _obscureConfirm,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirm
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureConfirm = !_obscureConfirm;
+                          });
+                        },
+                        tooltip: _obscureConfirm
+                            ? 'Lihat Password'
+                            : "Sembunyikan Password",
+                      ),
                     ),
-                    obscureText: true,
                   ),
                   const SizedBox(height: 24),
                   Row(

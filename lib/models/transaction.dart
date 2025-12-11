@@ -31,4 +31,34 @@ final List<Transaction> dummyTransactions = [
     total: 35000,
     items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
   ),
+  Transaction(
+    id: 'T003',
+    tanggal: '2025-12-07',
+    total: 35000,
+    items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
+  ),
+  Transaction(
+    id: 'T003',
+    tanggal: '2025-12-07',
+    total: 35000,
+    items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
+  ),
+  Transaction(
+    id: 'T003',
+    tanggal: '2025-12-07',
+    total: 35000,
+    items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
+  ),
+  Transaction(
+    id: 'T003',
+    tanggal: '2025-12-07',
+    total: 35000,
+    items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
+  ),
+  Transaction(
+    id: 'T003',
+    tanggal: '2025-12-07',
+    total: 35000,
+    items: ['Soto Ayam', 'Es Jeruk', 'Kerupuk'],
+  ),
 ];

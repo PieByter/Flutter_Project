@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_kantin/screens/main/coupon/coupon_pages.dart';
 import 'screens/authentication/login_page.dart';
 import 'screens/authentication/register_page.dart';
 import 'screens/main/order/order_page.dart';
@@ -26,18 +27,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: Colors.white,
           brightness: Brightness.light,
         ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: Colors.white,
           brightness: Brightness.dark,
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
     );
   }
 }
@@ -54,6 +55,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   final List<Widget> _pages = [
     HomePage(),
     OrderPage(),
+    CouponPages(),
     TransactionPage(),
     ProfilePage(),
   ];
