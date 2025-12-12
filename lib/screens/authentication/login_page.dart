@@ -34,11 +34,13 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       final token = result['token'];
+
       final user = result['user'];
       final nama = user['nama'] ?? 'User';
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
+      await prefs.setBool('remember_me', _rememberMe);
 
       if (!mounted) return;
 

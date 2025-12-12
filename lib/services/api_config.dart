@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class ApiConfig {
-  static const String baseUrlWeb = "http://172.30.112.1:8080";
-  static const String baseurlDevice = "http://172.30.112.1:8080";
+  static const String baseUrlWeb = "http://192.168.18.158:8080";
+  static const String baseurlDevice = "http://192.168.18.158:8080";
 
   static String get baseUrl {
     if (kIsWeb) {

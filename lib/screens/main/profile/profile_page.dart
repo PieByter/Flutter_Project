@@ -1,21 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../authentication/login_page.dart';
-import '../../../services/auth_service.dart';
+import '../../../helper/auth_helper.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
-
-  Future<void> _handleLogout(BuildContext context) async {
-    await AuthService.logout();
-    if (!context.mounted) return;
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const LoginPage()),
-      (route) => false,
-    );
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text("Berhasil Logout")));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () {
-                        _handleLogout(context);
+                        AuthHelper.logout(context);
                       },
                     ),
                   ],

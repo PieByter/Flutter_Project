@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_kantin/screens/main/coupon/coupon_pages.dart';
 import 'screens/authentication/login_page.dart';
-import 'screens/authentication/register_page.dart';
 import 'screens/main/order/order_page.dart';
 import 'screens/main/home_page.dart';
 import 'screens/main/transaction/transaction_page.dart';
@@ -10,20 +9,48 @@ import 'widgets/main_drawer.dart';
 import 'widgets/main_bottom_nav.dart';
 import 'screens/splash_screen.dart';
 import 'screens/main/order/order_checkout_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class AppLifecycleHandler extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.detached ||
+        state == AppLifecycleState.inactive) {
+      _handleTokenOnExit();
+    }
+  }
+
+  Future<void> _handleTokenOnExit() async {
+    final prefs = await SharedPreferences.getInstance();
+    final rememberMe = prefs.getBool('remember_me') ?? false;
+    if (!rememberMe) {
+      await prefs.remove('token');
+    }
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  WidgetsBinding.instance.addObserver(AppLifecycleHandler());
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token');
+  final rememberMe = prefs.getBool('remember_me') ?? false;
+
+  runApp(MyApp(isLoggedIn: token != null && rememberMe));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.isLoggedIn});
+
+  final bool isLoggedIn;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kantin Apps',
-      home: const LoginPage(), // home: const SplashScreenPage(),
+      home: isLoggedIn
+          ? const MainNavigationPage()
+          : const LoginPage(), // home: const SplashScreenPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
