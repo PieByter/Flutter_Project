@@ -15,7 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
-  bool _rememberMe = false;
   bool _isLoading = false;
 
   void _login() async {
@@ -40,7 +39,6 @@ class _LoginPageState extends State<LoginPage> {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
-      await prefs.setBool('remember_me', _rememberMe);
 
       if (!mounted) return;
 
@@ -123,20 +121,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Checkbox(
-                        value: _rememberMe,
-                        onChanged: (value) {
-                          setState(() {
-                            _rememberMe = value ?? false;
-                          });
-                        },
-                      ),
-                      const Text('Remember Me'),
-                    ],
-                  ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

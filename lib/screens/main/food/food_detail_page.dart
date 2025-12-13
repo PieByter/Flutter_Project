@@ -15,12 +15,19 @@ class FoodDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.network(
-                food.gambar,
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
+              child: food.gambarMakanan != null
+                  ? Image.network(
+                      food.gambarMakanan!,
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    )
+                  : Container(
+                      width: 200,
+                      height: 200,
+                      color: Colors.grey[300],
+                      child: const Icon(Icons.fastfood, size: 80),
+                    ),
             ),
             const SizedBox(height: 24),
             Text(
@@ -28,7 +35,7 @@ class FoodDetailPage extends StatelessWidget {
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Text(food.deskripsi),
+            Text(food.deskripsi ?? '-', style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 16),
             Text(
               'Harga: Rp${food.harga}',
@@ -36,11 +43,11 @@ class FoodDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text('Stok: ${food.stok}', style: const TextStyle(fontSize: 18)),
-            if (food.keterangan != null)
+            if (food.deskripsi != null)
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
-                  food.keterangan!,
+                  food.deskripsi!,
                   style: const TextStyle(color: Colors.grey),
                 ),
               ),

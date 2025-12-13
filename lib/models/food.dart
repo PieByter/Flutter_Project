@@ -1,90 +1,41 @@
 class Food {
-  final String id, nama, deskripsi, gambar;
-  final int harga, stok;
-  final String? keterangan;
+  final int id;
+  final String kode;
+  final String nama;
+  final String? deskripsi;
+  final int harga;
+  final int stok;
+  final String? gambarMakanan;
+  final String status;
+  final bool isAvailable;
+  final String tipeMenu;
+  final int tambahanBayar;
 
   Food({
     required this.id,
+    required this.kode,
     required this.nama,
-    required this.deskripsi,
-    required this.gambar,
+    this.deskripsi,
     required this.harga,
     required this.stok,
-    this.keterangan,
+    this.gambarMakanan,
+    required this.status,
+    required this.isAvailable,
+    required this.tipeMenu,
+    required this.tambahanBayar,
   });
-}
 
-final List<Food> dummyFoods = [
-  Food(
-    id: '1',
-    nama: 'Nasi Goreng',
-    deskripsi: 'Nasi goreng special dengan telur dan ayam',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 15000,
-    stok: 10,
-  ),
-  Food(
-    id: '2',
-    nama: 'Mie Ayam',
-    deskripsi: 'Mie ayam special dengan pangsit dan bakso',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 12000,
-    stok: 8,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-  Food(
-    id: '3',
-    nama: 'Bihun Goreng',
-    deskripsi: 'Bihun goreng special dengan sayuran dan telur',
-    gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-    harga: 13000,
-    stok: 15,
-  ),
-];
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
+    id: json['id'],
+    kode: json['kode'],
+    nama: json['nama'],
+    deskripsi: json['deskripsi'],
+    harga: json['harga'],
+    stok: json['stok'],
+    gambarMakanan: json['gambar_makanan'],
+    status: json['status'],
+    isAvailable: json['is_available'] ?? false,
+    tipeMenu: json['tipe_menu'],
+    tambahanBayar: json['tambahan_bayar'],
+  );
+}

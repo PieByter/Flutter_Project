@@ -13,10 +13,42 @@ class ProfilePage extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            const CircleAvatar(
-              radius: 48,
-              backgroundImage: NetworkImage('https://example.com/profile.jpg'),
+            Center(
+              child: ClipOval(
+                child: Image.network(
+                  'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+                  width: 96,
+                  height: 96,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (_, child, progress) => progress == null
+                      ? child
+                      : const SizedBox(
+                          width: 96,
+                          height: 96,
+                          child: Center(
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        ),
+                  errorBuilder: (_, error, ___) {
+                    debugPrint('Error loading image: $error');
+                    return Container(
+                      width: 96,
+                      height: 96,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.person,
+                        size: 48,
+                        color: Colors.grey,
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
+
             const SizedBox(height: 16),
             Card(
               // shape: const RoundedRectangleBorder(

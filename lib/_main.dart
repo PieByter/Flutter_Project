@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/authentication/login_page.dart';
 import 'screens/authentication/register_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'screens/main/order/food_list_page.dart';
+import 'screens/main/food/food_list_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
