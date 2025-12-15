@@ -37,12 +37,12 @@ class FoodDetailPage extends StatelessWidget {
             const SizedBox(height: 8),
             Text(food.deskripsi ?? '-', style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 16),
+            Text('Rp${food.harga}', style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 8),
             Text(
-              'Harga: Rp${food.harga}',
+              'Available ${food.stok}',
               style: const TextStyle(fontSize: 18),
             ),
-            const SizedBox(height: 8),
-            Text('Stok: ${food.stok}', style: const TextStyle(fontSize: 18)),
             if (food.deskripsi != null)
               Padding(
                 padding: const EdgeInsets.only(top: 16),

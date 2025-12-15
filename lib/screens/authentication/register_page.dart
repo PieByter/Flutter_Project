@@ -100,38 +100,52 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(height: 24),
+                  Align(alignment: Alignment.centerLeft, child: Text('Nama')),
                   TextField(
                     controller: _namaController,
                     decoration: const InputDecoration(
-                      labelText: 'Nama',
+                      // labelText: 'Nama',
+                      hintText: 'Nama',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.person),
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Nomor Induk Pekerja (NIK)'),
+                  ),
                   TextField(
                     controller: _nikController,
                     decoration: const InputDecoration(
-                      labelText: 'NIK',
+                      // labelText: 'NIK',
+                      hintText: 'NIK',
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
+                      prefixIcon: Icon(Icons.badge),
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Align(alignment: Alignment.centerLeft, child: Text('Email')),
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      // labelText: 'Email',
+                      hintText: 'Email',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.email),
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Password'),
+                  ),
                   TextField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      // labelText: 'Password',
+                      hintText: 'Password',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconButton(
@@ -152,11 +166,16 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Confirm Password'),
+                  ),
                   TextField(
                     controller: _confirmController,
                     obscureText: _obscureConfirm,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      // labelText: 'Confirm Password',
+                      hintText: 'Confirm Password',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconButton(
@@ -194,7 +213,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           "Login",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
-                            decoration: TextDecoration.underline,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -211,6 +229,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor: Colors.white,
                       ),
                       child: _isLoading
                           ? const SizedBox(

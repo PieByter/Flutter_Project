@@ -31,7 +31,7 @@ class _OrderPageState extends State<OrderPage> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async => setState(() {}), // tarik untuk refresh manual
+        onRefresh: () async => setState(() {}),
         child: FutureBuilder<List<Food>>(
           future: fetchFoods(),
           builder: (context, snapshot) {
@@ -55,7 +55,7 @@ class _OrderPageState extends State<OrderPage> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 1,
                 ),
                 itemBuilder: (context, index) {
                   final food = foods[index];
@@ -101,17 +101,17 @@ class _OrderPageState extends State<OrderPage> {
                                   food.nama,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    fontSize: 20,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
+                                Text('Rp${food.harga} (${food.stok} left)'),
                                 Text(
                                   food.deskripsi ?? '-',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 const SizedBox(height: 4),
-                                Text('Harga: Rp ${food.harga}'),
-                                Text('Stok: ${food.stok}'),
                               ],
                             ),
                           ),
@@ -157,7 +157,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                         title: Text(food.nama),
                         subtitle: Text(
-                          '${food.deskripsi ?? '-'}\nHarga: Rp${food.harga} | Stok: ${food.stok}',
+                          '${food.deskripsi ?? '-'}\nRp${food.harga} | Available ${food.stok}',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),

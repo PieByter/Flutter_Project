@@ -5,9 +5,7 @@ import 'screens/main/order/order_page.dart';
 import 'screens/main/home_page.dart';
 import 'screens/main/transaction/transaction_page.dart';
 import 'screens/main/profile/profile_page.dart';
-import 'widgets/main_drawer.dart';
 import 'widgets/main_bottom_nav.dart';
-import 'screens/splash_screen.dart';
 import 'screens/main/order/order_checkout_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,15 +16,46 @@ void main() async {
   runApp(MyApp(isLoggedIn: token != null));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final bool isLoggedIn;
   const MyApp({super.key, required this.isLoggedIn});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.light;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isDark = prefs.getBool('isDarkMode') ?? false;
+    setState(() {
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
+
+  void _changeTheme(bool isDark) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkMode', isDark);
+    setState(() {
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kantin Apps',
-      home: isLoggedIn ? const MainNavigationPage() : const LoginPage(),
+      home: widget.isLoggedIn
+          ? MainNavigationPage(onThemeChanged: _changeTheme)
+          : const LoginPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -37,17 +66,18 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
+          seedColor: Colors.blueAccent,
           brightness: Brightness.dark,
         ),
       ),
-      themeMode: ThemeMode.light,
+      themeMode: _themeMode,
     );
   }
 }
 
 class MainNavigationPage extends StatefulWidget {
-  const MainNavigationPage({super.key});
+  final void Function(bool)? onThemeChanged;
+  const MainNavigationPage({super.key, this.onThemeChanged});
 
   @override
   State<MainNavigationPage> createState() => _MainNavigationPageState();
@@ -55,14 +85,6 @@ class MainNavigationPage extends StatefulWidget {
 
 class _MainNavigationPageState extends State<MainNavigationPage> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [
-    HomePage(),
-    OrderPage(),
-    CouponPages(),
-    TransactionPage(),
-    ProfilePage(),
-  ];
-
   final int cartCount = 2;
 
   void _onItemTapped(int index) {
@@ -73,12 +95,23 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Buat list pages di dalam build() agar dapat akses widget.onThemeChanged
+    final List<Widget> pages = [
+      const HomePage(),
+      const OrderPage(),
+      const CouponPages(),
+      const TransactionPage(),
+      ProfilePage(onThemeChanged: widget.onThemeChanged), // ✅ Kirim callback
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        // title: const Text('Kantin Apps'),
+        title: Image.asset(
+          '../assets/images/logo.png',
+          height: 40,
+        ), // Tanpa ../
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: null,
         actions: [
           IconButton(
             icon: Badge(
@@ -86,37 +119,30 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               child: const Icon(Icons.shopping_cart),
             ),
             onPressed: () {
-              // Navigator.pushNamed(context, '/order_checkout');
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => OrderCheckoutPage()),
+                MaterialPageRoute(builder: (_) => const OrderCheckoutPage()),
               );
             },
             tooltip: 'Keranjang Belanja',
           ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+            tooltip: 'Cari',
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {},
+            tooltip: 'Notifikasi',
+          ),
         ],
       ),
-      drawer: MainDrawer(
-        onMenuTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex], // ✅ Ganti _pages jadi pages
       bottomNavigationBar: MainBottomNav(
         selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     setState(() {
-      //       _selectedIndex = 2;
-      //     });
-      //   },
-      //   child: const Icon(Icons.card_giftcard),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

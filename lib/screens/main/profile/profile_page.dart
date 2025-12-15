@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project_kantin/screens/settings_pages.dart';
 import '../../../helper/auth_helper.dart';
+import 'company_profile_page.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final void Function(bool)? onThemeChanged;
+  const ProfilePage({super.key, this.onThemeChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +108,28 @@ class ProfilePage extends StatelessWidget {
                       leading: const Icon(Icons.business),
                       title: const Text('Company Profile'),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const CompanyProfilePage(),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.settings),
+                      title: const Text('Settings'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                SettingsPage(onThemeChanged: onThemeChanged),
+                          ),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: const Icon(Icons.logout, color: Colors.red),

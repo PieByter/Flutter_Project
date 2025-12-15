@@ -87,20 +87,27 @@ class _LoginPageState extends State<LoginPage> {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(height: 24),
+                  Align(alignment: Alignment.centerLeft, child: Text('Email')),
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      // labelText: 'Email',
+                      hintText: 'Email',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.email),
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Password'),
+                  ),
                   TextField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      // labelText: 'Password',
+                      hintText: 'Password',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconButton(
@@ -139,7 +146,6 @@ class _LoginPageState extends State<LoginPage> {
                           "Registrasi",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
-                            decoration: TextDecoration.underline,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -156,6 +162,8 @@ class _LoginPageState extends State<LoginPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor: Colors.white,
                       ),
                       child: _isLoading
                           ? const SizedBox(
