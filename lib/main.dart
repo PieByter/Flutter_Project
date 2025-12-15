@@ -108,6 +108,15 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       _selectedIndex = 2;
+      //     });
+      //   },
+      //   child: const Icon(Icons.card_giftcard),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
