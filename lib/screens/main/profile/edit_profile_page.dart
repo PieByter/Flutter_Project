@@ -26,7 +26,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _namaC = TextEditingController(text: 'Nama User');
   final _nikC = TextEditingController(text: '12345677890');
   final _emailC = TextEditingController(text: 'user@gmail.com');
-  final _passwordC = TextEditingController(text: '********');
   final _telpC = TextEditingController(text: '08123456789');
   final _alamatC = TextEditingController(text: 'Jl. Mawar No. 1');
   final _tglLahirC = TextEditingController(text: '1995-01-01');
@@ -45,7 +44,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _namaC.dispose();
     _nikC.dispose();
     _emailC.dispose();
-    _passwordC.dispose();
     _telpC.dispose();
     _alamatC.dispose();
     _tglLahirC.dispose();
@@ -125,6 +123,62 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
   }
 
+  Widget _infoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          ),
+          Text(value, style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _selectDate(
+    BuildContext context,
+    TextEditingController controller,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        controller.text =
+            '${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}';
+      });
+    }
+  }
+
+  Widget _dateField(
+    String label,
+    TextEditingController c,
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: TextFormField(
+        controller: c,
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+          suffixIcon: const Icon(Icons.calendar_today),
+        ),
+        onTap: () => _selectDate(context, c),
+        validator: (v) =>
+            (v == null || v.isEmpty) ? '$label tidak boleh kosong' : null,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -179,7 +233,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               _section('Akun', [
                 _field('Nama', _namaC),
                 _field('Email', _emailC, type: TextInputType.emailAddress),
-                _field('Password', _passwordC, obscure: true),
               ]),
               _section('Kontak', [
                 _field('Nomor Telepon', _telpC, type: TextInputType.phone),
@@ -187,31 +240,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ]),
               _section('Identitas', [
                 _field('NIK', _nikC, type: TextInputType.number),
-                _field('Tanggal Lahir', _tglLahirC, readOnly: true),
+                _dateField('Tanggal Lahir', _tglLahirC, context),
               ]),
               _section('Pekerjaan', [
                 _field('Jabatan', _jabatanC),
                 _field('Bagian', _bagianC),
                 _field('Penempatan', _penempatanC),
-                _field('Tanggal Bergabung', _tglGabungC, readOnly: true),
+                _dateField('Tanggal Bergabung', _tglGabungC, context),
                 _field('Keterangan', _keteranganC),
               ]),
               _section('Kupon', [
-                _field(
-                  'Kupon Tersedia',
-                  _kuponTersediaC,
-                  type: TextInputType.number,
-                ),
-                _field(
-                  'Kupon Terpakai',
-                  _kuponTerpakaiC,
-                  type: TextInputType.number,
-                ),
-                _field(
-                  'Kupon Dibatalkan',
-                  _kuponBatalC,
-                  type: TextInputType.number,
-                ),
+                _infoRow('Kupon Tersedia', _kuponTersediaC.text),
+                _infoRow('Kupon Terpakai', _kuponTerpakaiC.text),
+                _infoRow('Kupon Dibatalkan', _kuponBatalC.text),
               ]),
               const SizedBox(height: 12),
               SizedBox(
@@ -224,6 +265,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       );
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                   child: const Text('Simpan'),
                 ),
               ),
