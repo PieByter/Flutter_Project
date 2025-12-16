@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import '../config/app_theme.dart';
 
 final class AppPreview extends Preview {
   const AppPreview({super.name = 'Screen Preview', super.group = 'App Screens'})
@@ -11,11 +12,8 @@ final class AppPreview extends Preview {
 
   static PreviewThemeData themeBuilder() {
     return PreviewThemeData(
-      materialLight: ThemeData(
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.lightGreen[50],
-      ),
-      materialDark: ThemeData.dark(),
+      materialLight: buildLightTheme(),
+      materialDark: buildDarkTheme(),
     );
   }
 }

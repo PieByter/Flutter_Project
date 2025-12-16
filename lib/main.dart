@@ -8,6 +8,7 @@ import 'screens/main/profile/profile_page.dart';
 import 'widgets/main_bottom_nav.dart';
 import 'screens/main/order/order_checkout_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'config/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,19 +58,22 @@ class _MyAppState extends State<MyApp> {
           ? MainNavigationPage(onThemeChanged: _changeTheme)
           : const LoginPage(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-          brightness: Brightness.light,
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blueAccent,
-          brightness: Brightness.dark,
-        ),
-      ),
+      // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: Colors.brown[300]!
+      //     ,
+      //     brightness: Brightness.light,
+      //   ),
+      // ),
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: Colors.brown[700]!,
+      //     brightness: Brightness.dark,
+      //   ),
+      // ),
+      theme: buildLightTheme(),
+      darkTheme: buildDarkTheme(),
       themeMode: _themeMode,
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
 import 'register_page.dart';
 import '../../main.dart';
 import '../../services/auth_service.dart';

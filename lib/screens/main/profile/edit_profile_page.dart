@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../config/preview_config.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart';
 
 @AppPreview(name: 'Edit Profile', group: 'Profile')
 Widget editProfilePreview() {
@@ -202,10 +203,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         child: _profileImage != null
                             ? ClipOval(
-                                child: Image.file(
-                                  _profileImage!,
-                                  fit: BoxFit.cover,
-                                ),
+                                child: kIsWeb
+                                    ? Image.network(
+                                        _profileImage!.path,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (_, _, _) =>
+                                            const Icon(Icons.person, size: 60),
+                                      )
+                                    : Image.file(
+                                        _profileImage!,
+                                        fit: BoxFit.cover,
+                                      ),
                               )
                             : const Icon(Icons.person, size: 60),
                       ),
@@ -266,7 +274,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.brown,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(

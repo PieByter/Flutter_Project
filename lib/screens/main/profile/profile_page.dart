@@ -3,6 +3,7 @@ import 'package:project_kantin/screens/settings_pages.dart';
 import '../../../helper/auth_helper.dart';
 import 'company_profile_page.dart';
 import '../../../config/preview_config.dart';
+import 'edit_profile_page.dart';
 
 @AppPreview(name: 'Profile Page', group: 'Profile')
 Widget profilePagePreview() {
@@ -41,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                             child: CircularProgressIndicator(strokeWidth: 2),
                           ),
                         ),
-                  errorBuilder: (_, error, ___) {
+                  errorBuilder: (_, error, _) {
                     debugPrint('Error loading image: $error');
                     return Container(
                       width: 96,
@@ -99,7 +100,14 @@ class ProfilePage extends StatelessWidget {
                       leading: const Icon(Icons.edit),
                       title: const Text('Edit Profil'),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const EditProfilePage(),
+                          ),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: const Icon(Icons.favorite),

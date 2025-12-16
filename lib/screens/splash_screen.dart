@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'authentication/login_page.dart';
-import 'package:flutter/widget_previews.dart';
 import '../config/preview_config.dart';
 
 @AppPreview(name: 'Splash Screen', group: 'Splash')
@@ -57,14 +56,14 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen[50],
+      backgroundColor: Colors.brown[50],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ScaleTransition(
               scale: _animation,
-              child: Icon(Icons.fastfood, size: 100, color: Colors.green),
+              child: Icon(Icons.fastfood, size: 100, color: Colors.brown[400]),
             ),
             const SizedBox(height: 24),
             ScaleTransition(
@@ -74,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen>
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: Colors.brown,
                 ),
               ),
             ),

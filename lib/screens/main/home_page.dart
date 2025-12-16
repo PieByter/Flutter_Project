@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                   Icon(
                     Icons.account_balance_wallet,
                     size: 40,
-                    color: Colors.green,
+                    color: Colors.brown,
                   ),
                 ],
               ),
@@ -97,18 +97,18 @@ class HomePage extends StatelessWidget {
                         children: [
                           // CircleAvatar(
                           //   radius: 28,
-                          //   backgroundColor: Colors.green[100],
+                          //   backgroundColor: Colors.brown[100],
                           //   child: Icon(
                           //     item['icons'],
                           //     size: 28,
-                          //     color: Colors.green[800],
+                          //     color: Colors.brown[800],
                           //   ),
                           // ),
                           Container(
                             width: 56,
                             height: 56,
                             decoration: BoxDecoration(
-                              color: Colors.green[100],
+                              color: Colors.brown[100],
                               borderRadius: BorderRadius.circular(
                                 16,
                               ), // Sudut rounded
@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
                             child: Icon(
                               item['icons'],
                               size: 28,
-                              color: Colors.green[800],
+                              color: Colors.brown[800],
                             ),
                           ),
                           const SizedBox(height: 8),
