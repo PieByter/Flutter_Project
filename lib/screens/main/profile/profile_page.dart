@@ -79,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
           final user = snapshot.data ?? {};
           final nama = user['nama'];
           final email = user['email'];
+          final nik = user['nik'];
           final gambarProfil = user['gambar_profil'];
 
           final onThemeChanged = widget.onThemeChanged;
@@ -131,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 8),
                         Center(
                           child: Text(
-                            email,
+                            "$email ($nik)",
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
