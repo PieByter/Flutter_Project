@@ -42,12 +42,23 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       final token = result['token'];
-
+      final userId = (result['user']['id'] as num)
+          .toInt(); // aman untuk int/string/num
       final user = result['user'];
       final nama = user['nama'] ?? 'User';
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
+      await prefs.setInt('userId', userId);
+
+      // final savedToken = prefs.getString('token');
+      // final savedUserId = prefs.getInt('userId');
+      // debugPrint('Saved token: $savedToken');
+      // debugPrint('Saved userId: $savedUserId');
+
+      // if (savedToken == null || savedUserId == null) {
+      //   throw Exception('Gagal menyimpan kredensial.');
+      // }
 
       if (!mounted) return;
 
