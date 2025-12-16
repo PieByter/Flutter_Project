@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'authentication/login_page.dart';
+import 'package:flutter/widget_previews.dart';
+
+@Preview()
+Widget splashScreenPreview() {
+  return const MaterialApp(
+    home: SplashScreen(skipNavigation: true),
+    debugShowCheckedModeBanner: false,
+  );
+}
+// @Preview()
+// Widget splashScreenPreview() {
+//   return const SplashScreen();
+// }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, this.skipNavigation = false});
+
+  final bool skipNavigation;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -25,14 +40,15 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.easeOutBack,
     );
     _controller.forward();
-
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (_) => const LoginPage()));
-      }
-    });
+    if (!widget.skipNavigation) {
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const LoginPage()),
+          );
+        }
+      });
+    }
   }
 
   @override

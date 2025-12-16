@@ -1,0 +1,25 @@
+
+lib/
+    models/ // Struktur data (User, Food, dsb)
+    services/ // API service, API config, auth service, dsb
+    screens/ // Halaman UI (login, register, home, dsb)
+    widgets/ // Widget custom (card, button, dsb)
+    utils/ // Helper, formatter, constants, validator, dsb
+    providers/ // State management (Provider, Riverpod, Bloc, dsb)
+    themes/ // Tema, warna, style global
+    localization/ // Bahasa (localization)
+
+start ms-settings:developers
+
+flutter pub add <dependencies></dependencies>
+
+flutter pub outdated
+
+flutter pub upgrade
+
+flutter pub get
+flutter pub run flutter_launcher_icons:main
+
+flutter run -d web-server
+
+flutter widget-preview start

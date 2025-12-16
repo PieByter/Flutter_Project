@@ -29,7 +29,7 @@ class CompanyProfilePage extends StatelessWidget {
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
-                '../assets/images/logo.png', // Pastikan path asset benar
+                'assets/images/logo.png', // Pastikan path asset benar
                 fit: BoxFit.fill,
               ),
               centerTitle: true,

@@ -106,10 +106,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          '../assets/images/logo.png',
-          height: 40,
-        ), // Tanpa ../
+        title: Image.asset('assets/images/logo.png', height: 40), // Tanpa ../
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [

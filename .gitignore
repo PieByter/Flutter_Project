@@ -10,7 +10,6 @@
 .history
 .svn/
 .swiftpm/
-notes.txt
 
 # IntelliJ related
 *.iml
