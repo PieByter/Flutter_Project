@@ -1,0 +1,236 @@
+import 'package:flutter/material.dart';
+import '../../../config/preview_config.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
+@AppPreview(name: 'Edit Profile', group: 'Profile')
+Widget editProfilePreview() {
+  return const MaterialApp(
+    home: EditProfilePage(),
+    debugShowCheckedModeBanner: false,
+  );
+}
+
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({super.key});
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  final _formKey = GlobalKey<FormState>();
+  File? _profileImage;
+  final ImagePicker _picker = ImagePicker();
+
+  final _namaC = TextEditingController(text: 'Nama User');
+  final _nikC = TextEditingController(text: '12345677890');
+  final _emailC = TextEditingController(text: 'user@gmail.com');
+  final _passwordC = TextEditingController(text: '********');
+  final _telpC = TextEditingController(text: '08123456789');
+  final _alamatC = TextEditingController(text: 'Jl. Mawar No. 1');
+  final _tglLahirC = TextEditingController(text: '1995-01-01');
+  final _tglGabungC = TextEditingController(text: '2022-05-10');
+  final _jabatanC = TextEditingController(text: 'Staff');
+  final _bagianC = TextEditingController(text: 'Operasional');
+  final _penempatanC = TextEditingController(text: 'Jakarta');
+  final _keteranganC = TextEditingController(text: '—');
+  final _kuponTersediaC = TextEditingController(text: '12');
+  final _kuponTerpakaiC = TextEditingController(text: '5');
+  final _kuponBatalC = TextEditingController(text: '1');
+  final _gambarC = TextEditingController(text: 'assets/images/profile.png');
+
+  @override
+  void dispose() {
+    _namaC.dispose();
+    _nikC.dispose();
+    _emailC.dispose();
+    _passwordC.dispose();
+    _telpC.dispose();
+    _alamatC.dispose();
+    _tglLahirC.dispose();
+    _tglGabungC.dispose();
+    _jabatanC.dispose();
+    _bagianC.dispose();
+    _penempatanC.dispose();
+    _keteranganC.dispose();
+    _kuponTersediaC.dispose();
+    _kuponTerpakaiC.dispose();
+    _kuponBatalC.dispose();
+    _gambarC.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickFromGallery() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+        _gambarC.text = image.path;
+      });
+    }
+  }
+
+  Future<void> _pickFromCamera() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+        _gambarC.text = image.path;
+      });
+    }
+  }
+
+  Widget _section(String title, List<Widget> children) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 12),
+            ...children,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _field(
+    String label,
+    TextEditingController c, {
+    TextInputType? type,
+    bool obscure = false,
+    bool readOnly = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: TextFormField(
+        controller: c,
+        obscureText: obscure,
+        readOnly: readOnly,
+        keyboardType: type,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+        ),
+        validator: (v) =>
+            (v == null || v.isEmpty) ? '$label tidak boleh kosong' : null,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Edit Profil')),
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Column(
+            children: [
+              _section('Gambar Profil', [
+                Center(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey[300],
+                        ),
+                        child: _profileImage != null
+                            ? ClipOval(
+                                child: Image.file(
+                                  _profileImage!,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : const Icon(Icons.person, size: 60),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: _pickFromGallery,
+                            icon: const Icon(Icons.photo),
+                            label: const Text('Galeri'),
+                          ),
+                          const SizedBox(width: 12),
+                          ElevatedButton.icon(
+                            onPressed: _pickFromCamera,
+                            icon: const Icon(Icons.camera_alt),
+                            label: const Text('Kamera'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+              _section('Akun', [
+                _field('Nama', _namaC),
+                _field('Email', _emailC, type: TextInputType.emailAddress),
+                _field('Password', _passwordC, obscure: true),
+              ]),
+              _section('Kontak', [
+                _field('Nomor Telepon', _telpC, type: TextInputType.phone),
+                _field('Alamat', _alamatC, type: TextInputType.streetAddress),
+              ]),
+              _section('Identitas', [
+                _field('NIK', _nikC, type: TextInputType.number),
+                _field('Tanggal Lahir', _tglLahirC, readOnly: true),
+              ]),
+              _section('Pekerjaan', [
+                _field('Jabatan', _jabatanC),
+                _field('Bagian', _bagianC),
+                _field('Penempatan', _penempatanC),
+                _field('Tanggal Bergabung', _tglGabungC, readOnly: true),
+                _field('Keterangan', _keteranganC),
+              ]),
+              _section('Kupon', [
+                _field(
+                  'Kupon Tersedia',
+                  _kuponTersediaC,
+                  type: TextInputType.number,
+                ),
+                _field(
+                  'Kupon Terpakai',
+                  _kuponTerpakaiC,
+                  type: TextInputType.number,
+                ),
+                _field(
+                  'Kupon Dibatalkan',
+                  _kuponBatalC,
+                  type: TextInputType.number,
+                ),
+              ]),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Data tersimpan')),
+                      );
+                    }
+                  },
+                  child: const Text('Simpan'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

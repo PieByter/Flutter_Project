@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'register_page.dart';
 import '../../main.dart';
 import '../../services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../config/preview_config.dart';
+
+@AppPreview(name: 'Login Page', group: 'Authentication')
+Widget loginPagePreview() {
+  return const MaterialApp(
+    home: LoginPage(),
+    debugShowCheckedModeBanner: false,
+  );
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../config/preview_config.dart';
+
+@AppPreview(name: 'Home Page', group: 'Home')
+Widget homePagePreview() {
+  return const MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false);
+}
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 

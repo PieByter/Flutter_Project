@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:project_kantin/screens/settings_pages.dart';
 import '../../../helper/auth_helper.dart';
 import 'company_profile_page.dart';
+import '../../../config/preview_config.dart';
+
+@AppPreview(name: 'Profile Page', group: 'Profile')
+Widget profilePagePreview() {
+  return const MaterialApp(
+    home: ProfilePage(),
+    debugShowCheckedModeBanner: false,
+  );
+}
 
 class ProfilePage extends StatelessWidget {
   final void Function(bool)? onThemeChanged;

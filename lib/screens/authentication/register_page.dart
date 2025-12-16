@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import '../../services/auth_service.dart';
+import '../../config/preview_config.dart';
+
+@AppPreview(name: 'Register Page', group: 'Authentication')
+Widget registerPagePreview() {
+  return const MaterialApp(
+    home: RegisterPage(),
+    debugShowCheckedModeBanner: false,
+  );
+}
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

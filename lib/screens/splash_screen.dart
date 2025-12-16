@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'authentication/login_page.dart';
 import 'package:flutter/widget_previews.dart';
+import '../config/preview_config.dart';
 
-@Preview()
+@AppPreview(name: 'Splash Screen', group: 'Splash')
 Widget splashScreenPreview() {
   return const MaterialApp(
     home: SplashScreen(skipNavigation: true),
     debugShowCheckedModeBanner: false,
   );
 }
-// @Preview()
-// Widget splashScreenPreview() {
-//   return const SplashScreen();
-// }
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, this.skipNavigation = false});
