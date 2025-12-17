@@ -1,0 +1,19 @@
+Saya ingin membuat halaman login Flutter dengan validasi email dan password.
+
+Gunakan Flutter, provider untuk state management, dan tampilkan error jika email tidak valid.
+
+Berikut kode saya, tolong tambahkan validasi password minimal 8 karakter:
+
+Bagaimana cara menampilkan pesan error di bawah TextField jika input salah?
+
+Saya ingin hasilnya berupa kode lengkap satu file, siap copy-paste.
+
+Saya dapat error “NoSuchMethodError: The method ‘validate’ was called on null”. Bagaimana solusinya?
+
+Buatkan kode Flutter halaman login dengan dua TextField (email & password), validasi email, password minimal 8 karakter, dan tombol login. Jika input salah, tampilkan pesan error di bawah field. Kode satu file saja.
+
+Bagaimana cara menampilkan pesan error di bawah TextField jika input salah?
+
+Saya ingin hasilnya berupa kode lengkap satu file, siap copy-paste.
+
+Saya dapat error “NoSuchMethodError: The method ‘validate’ was called on null”. Bagaimana solusinya?
